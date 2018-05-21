@@ -24,7 +24,7 @@ public class TaskController {
     }
 
     // Create a new Task
-    @PostMapping("/task")
+    @PostMapping("/tasks")
     public Task createTask(@Valid @RequestBody Task task) {
         return taskRepository.save(task);
     }
