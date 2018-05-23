@@ -7,6 +7,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.util.Date;
 import java.io.Serializable;
 
@@ -22,13 +23,14 @@ public class Task implements Serializable {
     private Long id;
 
     @NotBlank
-    private String title;
-    
-    @NotBlank
     private String content;
 
     @NotNull
     private Integer status;
+    
+    @Lob @Basic(fetch = FetchType.LAZY)
+    @Column(name="pic", nullable=false)
+    private byte[] pic;
     
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -40,14 +42,10 @@ public class Task implements Serializable {
     @LastModifiedDate
     private Date updatedAt;
 
-	public String getTitle() {
-		return title;
+    public Long getID() {
+		return id;
 	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
+    
 	public String getContent() {
 		return content;
 	}
@@ -64,6 +62,14 @@ public class Task implements Serializable {
 		this.status = status;
 	}
 
+	public byte[] picBytes() {
+		return pic;
+	}
+
+	public void setPic(byte[] pic) {
+		this.pic = pic;
+	}
+	
 	public Date getCreatedAt() {
 		return createdAt;
 	}

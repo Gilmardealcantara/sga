@@ -39,14 +39,13 @@ public class TaskController {
     // Update a Task
     @PutMapping("/tasks/{id}")
     public Task updateTask(@PathVariable(value = "id") Long taskId,
-                                            @Valid @RequestBody Task taskDetails) {
+                                            @Valid @RequestBody byte[] image) {
 
         Task task = taskRepository.findById(taskId)
                 .orElseThrow(() -> new ResourceNotFoundException("Task", "id", taskId));
-
-        task.setTitle(taskDetails.getTitle());
-        task.setContent(taskDetails.getContent());
-        task.setStatus(taskDetails.getStatus());
+        
+        task.setPic(image);
+        task.setStatus(1);
         
         Task updatedTask = taskRepository.save(task);
         return updatedTask;
@@ -62,5 +61,15 @@ public class TaskController {
 
         return ResponseEntity.ok().build();
     }
+    
+    // Get a Image
+    @GetMapping("/image/{id}")
+    public byte[] getImageById(@PathVariable(value = "id") Long taskId) {
+    	Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new ResourceNotFoundException("Task", "id", taskId));
+    	
+    	return task.picBytes();
+    }
+
 
 }
