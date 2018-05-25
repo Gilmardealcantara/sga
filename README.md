@@ -11,7 +11,9 @@ createAt| String	| 	sytem		|	Data em que a tarefa foi criada
 updateAt| String	| 	system		|	Data a última atualização
 
 ### Imagens
+
 Chave  	|Tipo		|Permissão		|Descrição
+--------|---------	|-------------	|----------
 content | byte[]	| 	user		|	Foto da tarefa após ser concluída
 
 #### Exemplo de dado retornado pela API
