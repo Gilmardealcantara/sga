@@ -1,20 +1,22 @@
 # [SGA - Sistema de Gerenciamento de Atividades]
 
 ## Spring Rest API
-### Data Json Format
+### Especificações de dados JSON
 
-Key  		|Type	| Permission 	|Decription	 
+Chave  	|Tipo		|Permissão		|Descrição
 --------|---------	|-------------	|----------
-title   | String	| 	user		|	Título da Tarefa a ser executada
 content | String	| 	user		|	Descrição/conteúdo da Tarefa a ser executada
-status	| Integer	| 	user		|	Status da Tarefa a ser executada (0-não feita / 1-feita)
+status	| Integer	| 	user		|	Status da Tarefa a ser executada (0-Para fazer / 1-concluída)
 createAt| String	| 	sytem		|	Data em que a tarefa foi criada
 updateAt| String	| 	system		|	Data a última atualização
 
-#### Data Json Returned Example
+### Imagens
+Chave  	|Tipo		|Permissão		|Descrição
+content | byte[]	| 	user		|	Foto da tarefa após ser concluída
+
+#### Exemplo de dado retornado pela API
 ```json
 {
-    "title": "Tarefa1",
     "content": "Descrição T1...",
     "status": 0,
     "createdAt": "2018-05-20T23:32:40.000+0000",
@@ -22,8 +24,7 @@ updateAt| String	| 	system		|	Data a última atualização
 }
 ```
 
-### HTTP Methods
-
+### Métodos REST HTTP
 
 Method  	|URI	
 ------------|----------------	
@@ -32,8 +33,9 @@ POST   		| "/api/tasks"
 GET(one)  	| "/api/tasks/{id}"
 PUT			| "/api/tasks/{id}"
 DELETE		| "/api/tasks/{id}"
+GET(imagem) | "/api/image/{id_task}" 
 
 ## Licence
 
-Developed by [Gilmar.Alcantara](https://github.com/Gilmardealcantara)
+Desenvolvido por [Gilmar.Alcantara](https://github.com/Gilmardealcantara)
 
